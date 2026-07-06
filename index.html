@@ -317,7 +317,7 @@ body {
   margin-bottom: 0;
 }
 .settings-panel.open {
-  max-height: 400px;
+  max-height: 900px;
   margin-bottom: 20px;
 }
 .settings-inner {
@@ -1494,6 +1494,183 @@ body {
 }
 .toast-action:hover { opacity: 1; }
 
+/* ===== Mode Switcher ===== */
+.mode-switcher {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 14px;
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+}
+.mode-tab {
+  flex: 1;
+  padding: 7px 10px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  transition: all var(--transition);
+}
+.mode-tab:hover { color: var(--text); }
+.mode-tab.active {
+  background: var(--bg-card);
+  color: var(--primary);
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ===== Manual Add ===== */
+.manual-type-selector {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.manual-type-btn {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  transition: all var(--transition);
+}
+.manual-type-btn:hover { border-color: var(--border-focus); color: var(--text); }
+.manual-type-btn.active {
+  border-color: var(--primary);
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 500;
+}
+#manualInput {
+  width: 100%;
+  min-height: 70px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  resize: vertical;
+  background: var(--bg-input);
+  color: var(--text);
+  transition: border-color var(--transition);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+#manualInput:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+.manual-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.manual-field label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+.manual-field-row {
+  display: flex;
+  gap: 10px;
+}
+.manual-field-row .manual-field { flex: 1; }
+.manual-priority-selector {
+  display: flex;
+  gap: 6px;
+}
+.manual-priority-btn {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  transition: all var(--transition);
+}
+.manual-priority-btn:hover { border-color: var(--border-focus); color: var(--text); }
+.manual-priority-btn.active[data-priority="high"] {
+  border-color: var(--red); background: var(--red-light); color: var(--red); font-weight: 500;
+}
+.manual-priority-btn.active[data-priority="normal"] {
+  border-color: var(--primary); background: var(--primary-light); color: var(--primary); font-weight: 500;
+}
+.manual-priority-btn.active[data-priority="low"] {
+  border-color: var(--text-tertiary); background: var(--bg-hover); color: var(--text-secondary); font-weight: 500;
+}
+.manual-field input[type="date"] {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font);
+  font-size: 0.82rem;
+  background: var(--bg-input);
+  color: var(--text);
+}
+.manual-field input[type="date"]:focus {
+  outline: none;
+  border-color: var(--border-focus);
+}
+.manual-tags-input-wrapper {
+  display: flex;
+  gap: 6px;
+}
+.manual-tags-input-wrapper input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  background: var(--bg-input);
+  color: var(--text);
+}
+
+/* ===== Sync Section ===== */
+.sync-section {
+  border-top: 1px solid var(--border);
+  margin-top: 16px;
+  padding-top: 14px;
+}
+.sync-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.sync-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.sync-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+.sync-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 600px) {
   .app { padding: 16px 12px 60px; }
@@ -1577,6 +1754,33 @@ body {
         <button class="btn btn-primary" id="saveSettingsBtn">保存</button>
       </div>
 
+      <div class="sync-section">
+        <div class="sync-title">☁️ 云端同步（GitHub Gist）</div>
+        <div class="field-group">
+          <label>GitHub Token（Personal Access Token）</label>
+          <div class="input-with-action">
+            <input type="password" id="syncToken" placeholder="ghp_..." autocomplete="off">
+            <button type="button" class="input-action-btn" id="toggleSyncTokenBtn" title="显示/隐藏">👁</button>
+          </div>
+        </div>
+        <div class="field-group">
+          <label>Gist ID（留空则自动创建）</label>
+          <input type="text" id="syncGistId" placeholder="留空 → 首次推送时自动创建" autocomplete="off">
+        </div>
+        <div class="sync-status">
+          <div class="status-dot" id="syncStatusDot"></div>
+          <span id="syncStatusText">未同步</span>
+        </div>
+        <div class="sync-actions">
+          <button class="btn btn-secondary" id="syncPushBtn">⬆ 推送到云端</button>
+          <button class="btn btn-secondary" id="syncPullBtn">⬇ 从云端拉取</button>
+        </div>
+        <label class="checkbox-label">
+          <input type="checkbox" id="autoSync">
+          <span>自动同步（数据变更后自动推送）</span>
+        </label>
+      </div>
+
       <div class="data-mgmt-section">
         <div class="data-mgmt-title">💾 数据管理</div>
         <div class="data-mgmt-actions">
@@ -1592,22 +1796,78 @@ body {
   <!-- New Entry Button -->
   <button class="new-btn" id="newBtn">
     <span class="plus">+</span>
-    <span>新建 · 粘贴 AI 对话内容</span>
+    <span>新建条目</span>
   </button>
 
   <!-- Input Panel -->
   <div class="input-panel" id="inputPanel">
     <div class="input-panel-inner">
-      <textarea id="inputText" placeholder="把 AI 给你的建议、内容粘贴到这里...
+      <!-- Mode Switcher -->
+      <div class="mode-switcher" id="modeSwitcher">
+        <button class="mode-tab active" data-mode="ai">🔍 AI 拆解</button>
+        <button class="mode-tab" data-mode="manual">✏ 手动添加</button>
+      </div>
+
+      <!-- AI Mode -->
+      <div id="aiModeContent">
+        <textarea id="inputText" placeholder="把 AI 给你的建议、内容粘贴到这里...
 
 AI 会自动分析并拆解为：
   🔴 待办 — 需要做的事
   📚 资料 — 值得留存的信息和灵感（用标签区分收藏/灵感/学习/工作等）"></textarea>
-      <div class="input-actions">
-        <span class="input-hint" id="inputHint">粘贴后点击分析，AI 自动拆解分类</span>
-        <div class="input-actions-right">
-          <button class="btn btn-secondary" id="cancelBtn">取消</button>
-          <button class="btn btn-primary" id="analyzeBtn">🔍 AI 分析拆解</button>
+        <div class="input-actions">
+          <span class="input-hint">粘贴后点击分析，AI 自动拆解分类</span>
+          <div class="input-actions-right">
+            <button class="btn btn-secondary" id="cancelBtn">取消</button>
+            <button class="btn btn-primary" id="analyzeBtn">🔍 AI 分析拆解</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manual Mode -->
+      <div id="manualModeContent" style="display:none;">
+        <div class="manual-type-selector" id="manualTypeSelector">
+          <button class="manual-type-btn active" data-type="todo">🔴 待办</button>
+          <button class="manual-type-btn" data-type="reference">📚 资料</button>
+        </div>
+        <textarea id="manualInput" placeholder="输入条目内容...（每行一条，回车快速添加）" rows="3"></textarea>
+        <div class="manual-options" id="manualOptions">
+          <!-- Priority (todo only) -->
+          <div class="manual-field" id="manualPriorityField">
+            <label>优先级</label>
+            <div class="manual-priority-selector" id="manualPrioritySelector">
+              <button class="manual-priority-btn active" data-priority="normal">○ 普通</button>
+              <button class="manual-priority-btn" data-priority="high">🔥 高</button>
+              <button class="manual-priority-btn" data-priority="low">↓ 低</button>
+            </div>
+          </div>
+          <div class="manual-field-row">
+            <div class="manual-field">
+              <label>📅 计划日期</label>
+              <input type="date" id="manualPlanDate">
+            </div>
+            <div class="manual-field">
+              <label>⏰ 截止日期</label>
+              <input type="date" id="manualDeadline">
+            </div>
+          </div>
+          <!-- Tags (reference only) -->
+          <div class="manual-field" id="manualTagsField" style="display:none;">
+            <label>标签</label>
+            <div class="manual-tags-input-wrapper">
+              <input type="text" id="manualTagInput" placeholder="输入标签后回车添加...">
+              <button type="button" class="edit-tags-add-btn" id="manualTagAddBtn">添加</button>
+            </div>
+            <div class="edit-tags-list" id="manualTagsList"></div>
+            <div class="edit-tags-presets" id="manualTagsPresets"></div>
+          </div>
+        </div>
+        <div class="input-actions">
+          <span class="input-hint">回车快速添加，Shift+Enter 换行</span>
+          <div class="input-actions-right">
+            <button class="btn btn-secondary" id="manualCancelBtn">取消</button>
+            <button class="btn btn-primary" id="manualAddBtn">✚ 添加</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1790,6 +2050,7 @@ function loadData() {
 
 function saveData() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state.items));
+  triggerAutoSync();
 }
 
 function loadSettings() {
@@ -1851,14 +2112,22 @@ function saveTheme(theme) {
 function applyTheme(theme) {
   const isDark = theme === 'dark' || (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches);
   document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-  document.getElementById('themeBtn').textContent = isDark ? '☀️' : '🌙';
+  const btn = document.getElementById('themeBtn');
+  if (theme === 'auto') btn.textContent = '🖥';
+  else btn.textContent = isDark ? '☀️' : '🌙';
+  btn.title = theme === 'auto' ? '跟随系统（点击切换明/暗）' : (isDark ? '当前暗色（点击跟随系统）' : '当前明色（点击切换暗色）');
 }
 
 function toggleTheme() {
-  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-  const next = isDark ? 'light' : 'dark';
+  const current = loadTheme();
+  // Cycle: light → dark → auto → light
+  let next;
+  if (current === 'light') next = 'dark';
+  else if (current === 'dark') next = 'auto';
+  else next = 'light';
   saveTheme(next);
   applyTheme(next);
+  showToast(next === 'auto' ? '跟随系统主题' : (next === 'dark' ? '暗色主题' : '明色主题'), '');
 }
 
 // ===== UI Helpers =====
@@ -2010,7 +2279,7 @@ function renderItems() {
   });
 
   if (filtered.length === 0) {
-    list.innerHTML = `<div class="empty-state"><div class="empty-state-icon">✅</div><div class="empty-state-text">没有待办事项</div><div class="empty-state-text" style="margin-top:8px;font-size:0.8rem;">粘贴内容让 AI 拆解，或点击「新建」手动添加</div></div>`;
+    list.innerHTML = `<div class="empty-state"><div class="empty-state-icon">✅</div><div class="empty-state-text">没有待办事项</div><div class="empty-state-text" style="margin-top:8px;font-size:0.8rem;">点击「新建」用 AI 拆解，或切换到「手动添加」直接创建</div></div>`;
     return;
   }
 
@@ -3143,6 +3412,349 @@ async function testConnection() {
   }
 }
 
+// ===== Manual Add =====
+let manualPendingType = 'todo';
+let manualPendingPriority = 'normal';
+let manualPendingTags = [];
+
+function switchInputMode(mode) {
+  document.querySelectorAll('.mode-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.mode === mode);
+  });
+  document.getElementById('aiModeContent').style.display = (mode === 'ai') ? 'block' : 'none';
+  document.getElementById('manualModeContent').style.display = (mode === 'manual') ? 'block' : 'none';
+  if (mode === 'manual') {
+    setTimeout(() => document.getElementById('manualInput').focus(), 100);
+  } else {
+    setTimeout(() => document.getElementById('inputText').focus(), 100);
+  }
+}
+
+function updateManualTypeButtons() {
+  document.querySelectorAll('.manual-type-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.type === manualPendingType);
+  });
+  // Show/hide fields
+  document.getElementById('manualPriorityField').style.display = (manualPendingType === 'todo') ? 'block' : 'none';
+  document.getElementById('manualTagsField').style.display = (manualPendingType === 'reference') ? 'block' : 'none';
+  // Manual mode: show date fields only for todo
+  const dateFields = document.querySelectorAll('.manual-field-row .manual-field');
+  dateFields.forEach(f => {
+    const parent = f.closest('.manual-field-row');
+    if (parent) parent.style.display = (manualPendingType === 'todo') ? 'flex' : 'none';
+  });
+}
+
+function selectManualType(type) {
+  manualPendingType = type;
+  if (type === 'reference' && manualPendingTags.length === 0) {
+    manualPendingTags = ['收藏'];
+  }
+  updateManualTypeButtons();
+  updateManualTagsUI();
+}
+
+function updateManualPriorityButtons() {
+  document.querySelectorAll('.manual-priority-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.priority === manualPendingPriority);
+  });
+}
+
+function selectManualPriority(priority) {
+  manualPendingPriority = priority;
+  updateManualPriorityButtons();
+}
+
+function updateManualTagsUI() {
+  const listEl = document.getElementById('manualTagsList');
+  listEl.innerHTML = manualPendingTags.map((t, idx) => `
+    <span class="edit-tag-pill">${escapeHtml(t)}<span class="edit-tag-remove" onclick="removeManualTag(${idx})">×</span></span>
+  `).join('');
+  const presetEl = document.getElementById('manualTagsPresets');
+  presetEl.innerHTML = PRESET_TAGS.map(t => {
+    const used = manualPendingTags.includes(t);
+    return `<button class="edit-tag-preset ${used ? 'used' : ''}" onclick="addManualTag('${escapeHtml(t)}')">${escapeHtml(t)}</button>`;
+  }).join('');
+}
+
+function addManualTag(tag) {
+  tag = (tag || '').trim();
+  if (!tag || manualPendingTags.includes(tag)) return;
+  manualPendingTags.push(tag);
+  document.getElementById('manualTagInput').value = '';
+  updateManualTagsUI();
+}
+
+function removeManualTag(idx) {
+  manualPendingTags.splice(idx, 1);
+  updateManualTagsUI();
+}
+
+function addManualItem() {
+  const text = document.getElementById('manualInput').value.trim();
+  if (!text) {
+    showToast('请输入内容', 'error');
+    return;
+  }
+  const now = Date.now();
+  // Support multi-line: each non-empty line = one item
+  const lines = text.split('\n').map(l => l.trim()).filter(Boolean);
+  const planDate = document.getElementById('manualPlanDate').value || null;
+  const deadline = document.getElementById('manualDeadline').value || null;
+  const newItems = lines.map((line, idx) => {
+    if (manualPendingType === 'todo') {
+      return {
+        id: 'item_' + now + '_' + idx,
+        type: 'todo',
+        content: line,
+        completed: false,
+        planDate: planDate,
+        deadlineDate: deadline,
+        priority: manualPendingPriority,
+        tags: [],
+        createdAt: now + idx,
+        source: 'manual'
+      };
+    } else {
+      return {
+        id: 'item_' + now + '_' + idx,
+        type: 'reference',
+        content: line,
+        completed: null,
+        planDate: null,
+        deadlineDate: null,
+        priority: null,
+        tags: [...manualPendingTags],
+        createdAt: now + idx,
+        source: 'manual'
+      };
+    }
+  });
+  state.items.push(...newItems);
+  saveData();
+  // Reset form
+  document.getElementById('manualInput').value = '';
+  document.getElementById('manualPlanDate').value = '';
+  document.getElementById('manualDeadline').value = '';
+  render();
+  triggerAutoSync();
+  const count = newItems.length;
+  showToast(`已添加 ${count} 条${manualPendingType === 'todo' ? '待办' : '资料'}${count > 1 ? '' : ''}`, 'success');
+}
+
+// ===== GitHub Gist Sync =====
+const SYNC_SETTINGS_KEY = 'ai_inbox_sync_settings_v1';
+let autoSyncTimer = null;
+
+function loadSyncSettings() {
+  try {
+    const raw = localStorage.getItem(SYNC_SETTINGS_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  return { token: '', gistId: '', autoSync: false };
+}
+
+function saveSyncSettings(settings) {
+  localStorage.setItem(SYNC_SETTINGS_KEY, JSON.stringify(settings));
+}
+
+function fillSyncSettingsUI() {
+  const s = loadSyncSettings();
+  document.getElementById('syncToken').value = s.token || '';
+  document.getElementById('syncGistId').value = s.gistId || '';
+  document.getElementById('autoSync').checked = s.autoSync || false;
+  document.getElementById('syncToken').type = 'password';
+  document.getElementById('toggleSyncTokenBtn').textContent = '👁';
+  updateSyncStatus();
+}
+
+function collectSyncSettings() {
+  return {
+    token: document.getElementById('syncToken').value.trim(),
+    gistId: document.getElementById('syncGistId').value.trim(),
+    autoSync: document.getElementById('autoSync').checked
+  };
+}
+
+function updateSyncStatus() {
+  const s = loadSyncSettings();
+  const dot = document.getElementById('syncStatusDot');
+  const text = document.getElementById('syncStatusText');
+  if (s.gistId && s.token) {
+    dot.className = 'status-dot connected';
+    text.textContent = `已绑定 Gist (${s.gistId.substring(0, 8)}...)`;
+  } else if (s.token) {
+    dot.className = 'status-dot';
+    text.textContent = '已填 Token，未绑定 Gist';
+  } else {
+    dot.className = 'status-dot';
+    text.textContent = '未配置';
+  }
+}
+
+async function gistCreate(token, data) {
+  const resp = await fetch('https://api.github.com/gists', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      description: 'AI 智能收集箱数据同步',
+      public: false,
+      files: {
+        'ai-inbox-data.json': {
+          content: JSON.stringify(data, null, 2)
+        }
+      }
+    })
+  });
+  if (!resp.ok) {
+    const err = await resp.text();
+    throw new Error(`创建 Gist 失败: HTTP ${resp.status} ${err.substring(0, 100)}`);
+  }
+  return await resp.json();
+}
+
+async function gistUpdate(token, gistId, data) {
+  const resp = await fetch(`https://api.github.com/gists/${gistId}`, {
+    method: 'PATCH',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      files: {
+        'ai-inbox-data.json': {
+          content: JSON.stringify(data, null, 2)
+        }
+      }
+    })
+  });
+  if (!resp.ok) {
+    const err = await resp.text();
+    throw new Error(`更新 Gist 失败: HTTP ${resp.status} ${err.substring(0, 100)}`);
+  }
+  return await resp.json();
+}
+
+async function gistRead(token, gistId) {
+  const resp = await fetch(`https://api.github.com/gists/${gistId}`, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/vnd.github+json'
+    }
+  });
+  if (!resp.ok) {
+    const err = await resp.text();
+    throw new Error(`读取 Gist 失败: HTTP ${resp.status} ${err.substring(0, 100)}`);
+  }
+  const data = await resp.json();
+  const file = data.files && data.files['ai-inbox-data.json'];
+  if (!file) throw new Error('Gist 中未找到 ai-inbox-data.json');
+  return JSON.parse(file.content);
+}
+
+async function syncPush() {
+  const s = collectSyncSettings();
+  if (!s.token) {
+    showToast('请先填写 GitHub Token', 'error');
+    return;
+  }
+  const payload = {
+    version: 2,
+    syncedAt: new Date().toISOString(),
+    device: navigator.userAgent.substring(0, 50),
+    count: state.items.length,
+    items: state.items
+  };
+
+  const dot = document.getElementById('syncStatusDot');
+  const text = document.getElementById('syncStatusText');
+  dot.className = 'status-dot';
+  text.textContent = '推送中...';
+
+  try {
+    if (!s.gistId) {
+      // Create new gist
+      const gist = await gistCreate(s.token, payload);
+      s.gistId = gist.id;
+      document.getElementById('syncGistId').value = gist.id;
+      saveSyncSettings(s);
+      updateSyncStatus();
+      showToast(`已创建 Gist 并推送 ${state.items.length} 条数据`, 'success');
+    } else {
+      await gistUpdate(s.token, s.gistId, payload);
+      dot.className = 'status-dot connected';
+      text.textContent = `已同步 · ${new Date().toLocaleTimeString('zh-CN')}`;
+      showToast(`已推送 ${state.items.length} 条到云端`, 'success');
+    }
+  } catch(err) {
+    dot.className = 'status-dot error';
+    text.textContent = '同步失败';
+    showToast(err.message, 'error');
+  }
+}
+
+async function syncPull() {
+  const s = collectSyncSettings();
+  if (!s.token || !s.gistId) {
+    showToast('请先填写 Token 和 Gist ID', 'error');
+    return;
+  }
+
+  const dot = document.getElementById('syncStatusDot');
+  const text = document.getElementById('syncStatusText');
+  dot.className = 'status-dot';
+  text.textContent = '拉取中...';
+
+  try {
+    const cloudData = await gistRead(s.token, s.gistId);
+    if (!cloudData.items || !Array.isArray(cloudData.items)) {
+      throw new Error('云端数据格式无效');
+    }
+
+    // Merge: cloud replaces local (with migration)
+    const remoteItems = cloudData.items;
+    remoteItems.forEach(item => {
+      if (item.planDate === undefined) item.planDate = null;
+      if (item.deadlineDate === undefined) item.deadlineDate = null;
+      if (item.priority === undefined) item.priority = (item.type === 'todo') ? 'normal' : null;
+      if (item.tags === undefined || !Array.isArray(item.tags)) item.tags = [];
+      if (item.type === 'bookmark') {
+        item.type = 'reference';
+        if (!item.tags.includes('收藏')) item.tags.push('收藏');
+      } else if (item.type === 'idea') {
+        item.type = 'reference';
+        if (!item.tags.includes('灵感')) item.tags.push('灵感');
+      }
+    });
+
+    const cloudCount = remoteItems.length;
+    state.items = remoteItems;
+    saveData();
+    render();
+    updateSyncStatus();
+    const syncTime = cloudData.syncedAt ? new Date(cloudData.syncedAt).toLocaleString('zh-CN') : '';
+    showToast(`已从云端拉取 ${cloudCount} 条${syncTime ? '（同步于 ' + syncTime + '）' : ''}`, 'success');
+  } catch(err) {
+    dot.className = 'status-dot error';
+    text.textContent = '拉取失败';
+    showToast(err.message, 'error');
+  }
+}
+
+function triggerAutoSync() {
+  const s = loadSyncSettings();
+  if (!s.autoSync || !s.token || !s.gistId) return;
+  if (autoSyncTimer) clearTimeout(autoSyncTimer);
+  autoSyncTimer = setTimeout(() => {
+    syncPush();
+  }, 3000);
+}
+
 // ===== Event Bindings =====
 function bindEvents() {
   document.getElementById('themeBtn').addEventListener('click', toggleTheme);
@@ -3192,6 +3804,40 @@ function bindEvents() {
     togglePanel('inputPanel');
   });
 
+  // Mode switcher
+  document.querySelectorAll('.mode-tab').forEach(tab => {
+    tab.addEventListener('click', () => switchInputMode(tab.dataset.mode));
+  });
+
+  // Manual mode
+  document.querySelectorAll('.manual-type-btn').forEach(btn => {
+    btn.addEventListener('click', () => selectManualType(btn.dataset.type));
+  });
+  document.querySelectorAll('.manual-priority-btn').forEach(btn => {
+    btn.addEventListener('click', () => selectManualPriority(btn.dataset.priority));
+  });
+  document.getElementById('manualAddBtn').addEventListener('click', addManualItem);
+  document.getElementById('manualCancelBtn').addEventListener('click', () => {
+    document.getElementById('manualInput').value = '';
+    document.getElementById('manualPlanDate').value = '';
+    document.getElementById('manualDeadline').value = '';
+    manualPendingTags = [];
+    updateManualTagsUI();
+    document.getElementById('inputPanel').classList.remove('open');
+  });
+  document.getElementById('manualTagAddBtn').addEventListener('click', () => {
+    addManualTag(document.getElementById('manualTagInput').value);
+  });
+  document.getElementById('manualTagInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); addManualTag(e.target.value); }
+  });
+  document.getElementById('manualInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      addManualItem();
+    }
+  });
+
   document.getElementById('cancelBtn').addEventListener('click', () => {
     document.getElementById('inputText').value = '';
     document.getElementById('inputPanel').classList.remove('open');
@@ -3236,6 +3882,38 @@ function bindEvents() {
     const file = e.target.files[0];
     if (file) importJson(file);
     e.target.value = '';
+  });
+
+  // Sync
+  document.getElementById('syncPushBtn').addEventListener('click', () => {
+    saveSyncSettings(collectSyncSettings());
+    syncPush();
+  });
+  document.getElementById('syncPullBtn').addEventListener('click', () => {
+    saveSyncSettings(collectSyncSettings());
+    syncPull();
+  });
+  document.getElementById('toggleSyncTokenBtn').addEventListener('click', () => {
+    const input = document.getElementById('syncToken');
+    const btn = document.getElementById('toggleSyncTokenBtn');
+    if (input.type === 'password') { input.type = 'text'; btn.textContent = '🙈'; }
+    else { input.type = 'password'; btn.textContent = '👁'; }
+  });
+  document.getElementById('autoSync').addEventListener('change', () => {
+    const s = collectSyncSettings();
+    saveSyncSettings(s);
+    if (s.autoSync && s.token && s.gistId) {
+      showToast('已开启自动同步', 'success');
+    }
+  });
+  // Save sync settings when token/gistId changes
+  document.getElementById('syncToken').addEventListener('blur', () => {
+    saveSyncSettings(collectSyncSettings());
+    updateSyncStatus();
+  });
+  document.getElementById('syncGistId').addEventListener('blur', () => {
+    saveSyncSettings(collectSyncSettings());
+    updateSyncStatus();
   });
 
   // Header 数据菜单
@@ -3327,6 +4005,41 @@ function bindEvents() {
     if (loadTheme() === 'auto') applyTheme('auto');
   });
 
+  // Global keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    // Ctrl/Cmd + N → open new entry panel
+    if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
+      e.preventDefault();
+      const panel = document.getElementById('inputPanel');
+      const settings = document.getElementById('settingsPanel');
+      if (settings.classList.contains('open')) {
+        settings.classList.remove('open');
+        document.getElementById('settingsBtn').classList.remove('active');
+      }
+      if (!panel.classList.contains('open')) {
+        panel.classList.add('open');
+        setTimeout(() => {
+          // Focus the active mode's input
+          if (document.getElementById('aiModeContent').style.display !== 'none') {
+            document.getElementById('inputText').focus();
+          } else {
+            document.getElementById('manualInput').focus();
+          }
+        }, 300);
+      }
+    }
+    // Escape → close any open panel/popup
+    if (e.key === 'Escape') {
+      document.getElementById('inputPanel').classList.remove('open');
+      document.getElementById('settingsPanel').classList.remove('open');
+      document.getElementById('settingsBtn').classList.remove('active');
+      document.getElementById('datePickerOverlay').classList.remove('show');
+      document.getElementById('editOverlay').classList.remove('show');
+      document.getElementById('calendarDetail').classList.remove('show');
+      closeDataMenu();
+    }
+  });
+
   // Keyboard shortcut
   document.getElementById('inputText').addEventListener('keydown', (e) => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
@@ -3339,6 +4052,7 @@ function bindEvents() {
 function init() {
   loadData();
   applyTheme(loadTheme());
+  fillSyncSettingsUI();
   bindEvents();
   render();
 }
