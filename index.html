@@ -2245,6 +2245,11 @@ function renderItems() {
   // 基础筛选：todo Tab 只显示 todo 类型
   let filtered = state.items.filter(i => i.type === 'todo');
 
+  // 默认隐藏已完成（快捷筛选「已完成」时才显示）
+  if (state.quickFilter !== 'done') {
+    filtered = filtered.filter(i => !i.completed);
+  }
+
   // 搜索关键字过滤
   const kw = state.searchKeyword.trim().toLowerCase();
   if (kw) {
@@ -2279,7 +2284,10 @@ function renderItems() {
   });
 
   if (filtered.length === 0) {
-    list.innerHTML = `<div class="empty-state"><div class="empty-state-icon">✅</div><div class="empty-state-text">没有待办事项</div><div class="empty-state-text" style="margin-top:8px;font-size:0.8rem;">点击「新建」用 AI 拆解，或切换到「手动添加」直接创建</div></div>`;
+    const emptyText = state.quickFilter === 'done'
+      ? '还没有已完成的待办'
+      : '没有待办事项';
+    list.innerHTML = `<div class="empty-state"><div class="empty-state-icon">✅</div><div class="empty-state-text">${emptyText}</div><div class="empty-state-text" style="margin-top:8px;font-size:0.8rem;">点击「新建」用 AI 拆解，或切换到「手动添加」直接创建</div></div>`;
     return;
   }
 
@@ -2378,7 +2386,7 @@ function updateCounts() {
     )
   ).length;
   document.getElementById('countToday').textContent = todayCount;
-  document.getElementById('countTodo').textContent = state.items.filter(i => i.type === 'todo').length;
+  document.getElementById('countTodo').textContent = state.items.filter(i => i.type === 'todo' && !i.completed).length;
   document.getElementById('countReference').textContent = state.items.filter(i => i.type === 'reference' || i.type === 'bookmark' || i.type === 'idea').length;
   // Calendar count: items with any date
   const calCount = state.items.filter(i => i.planDate || i.deadlineDate).length;
@@ -2979,9 +2987,15 @@ function saveEditPanel() {
 function toggleComplete(id) {
   const item = state.items.find(i => i.id === id);
   if (item) {
+    const wasCompleted = item.completed;
     item.completed = !item.completed;
     saveData();
     render();
+    if (!wasCompleted) {
+      showToast('已标记完成', 'success');
+    } else {
+      showToast('已恢复为未完成', '');
+    }
   }
 }
 
